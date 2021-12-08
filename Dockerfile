@@ -30,12 +30,13 @@ ENV LC_ALL C.UTF-8
 
 ENV ROS_DISTRO noetic
 
+## ROS desktop-full
 # install ros packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-${ROS_DISTRO}-ros-core=1.5.0-1* \
+    ros-${ROS_DISTRO}-desktop-full=1.5.0-1* \
     && rm -rf /var/lib/apt/lists/*
-
-# ROS base
+    
+## ROS base
 # install bootstrap tools
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
@@ -47,27 +48,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 # bootstrap rosdep
 RUN rosdep init && \
   rosdep update --rosdistro $ROS_DISTRO
-
-# install ros packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-${ROS_DISTRO}-ros-base=1.5.0-1* \
-    && rm -rf /var/lib/apt/lists/*
-
-# ROS robot
-# install ros packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-${ROS_DISTRO}-robot=1.5.0-1* \
-    && rm -rf /var/lib/apt/lists/*
-# ROS desktop
-# install ros packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-${ROS_DISTRO}-desktop=1.5.0-1* \
-    && rm -rf /var/lib/apt/lists/*
-# ROS desktop-full
-# install ros packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-${ROS_DISTRO}-desktop-full=1.5.0-1* \
-    && rm -rf /var/lib/apt/lists/*
 
 # setup entrypoint
 COPY ./ros_entrypoint.sh /
