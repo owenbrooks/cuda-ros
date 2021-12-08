@@ -1,7 +1,7 @@
 
 # This is an auto generated Dockerfile for ros:ros-core
 # generated from docker_images/create_ros_core_image.Dockerfile.em
-FROM nvidia/cuda:11.4.2-runtime-ubuntu20.04
+FROM nvidia/cuda:11.0-runtime-ubuntu20.04
 
 ##### ROS install begins
 ## ROS core
